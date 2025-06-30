@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Abrir Câmera com JavaScript</title>
+</head>
+<body>
+  <h1>Minha Câmera</h1>
+  <video id="video" width="640" height="480" autoplay></video>
+  <button id="btn">Aperte para chamar</button>
+
+  <script>
+    const video = document.getElementById('video');
+    const btn = document.getElementById('btn');
+
+    // Função que ativa a câmera
+    function ativarCamera() {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          video.srcObject = stream;
+        })
+        .catch(err => {
+          console.error("Erro ao acessar a câmera: ", err);
+          alert("Não foi possível acessar a câmera.");
+        });
+    }
+
+    // Quando clicar no botão, ativa a câmera
+    btn.addEventListener('click', ativarCamera);
+  </script>
+</body>
+</html>
